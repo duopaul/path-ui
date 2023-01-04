@@ -75,11 +75,12 @@ const Step = ({ action, title }) => {
 const Toolbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const designPanelRef = React.useRef()
-
+  //adding a comment
   return (
     
     <Box position="fixed" top="5" right="5" bg="gray.800" p="2" zIndex="1">
       
+
       <Box color="white" align="center" p="3" borderBottom="white" _hover={{ bg: "gray.500", cursor: "pointer", transition: "all 0.2s" }}>
         <Link ref={designPanelRef} onClick={onOpen}>
         <EditIcon boxSize={8}/>
