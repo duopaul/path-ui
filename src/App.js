@@ -11,17 +11,19 @@ import {
   Button,
   theme,
   useDisclosure,
+  Icon,
   Drawer,DrawerBody,DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton,
   Tabs, TabList, TabPanels, Tab, TabPanel,
 } from '@chakra-ui/react';
-import {
-  EditIcon,
-  ViewIcon,
-  HamburgerIcon,
-  ArrowUpIcon,
-  ChatIcon,
-  StarIcon,
-} from '@chakra-ui/icons';
+
+import { 
+  TextReadingIcon,
+  VideoIcon,
+  CheckDashIcon,
+  InboxInIcon,
+  ChatBubblesIcon,
+  Edit2Icon,
+} from '@pathwright/pathicons';
 
 
 // Step Group Component 
@@ -38,11 +40,11 @@ const StepGroup = (props) => (
 
 // Step Action Icons
 const iconMap = {
-  read: <EditIcon />,
-  watch: <ViewIcon />,
-  todo: <HamburgerIcon />,
-  submit: <ArrowUpIcon />,
-  discuss: <ChatIcon />,
+  read: TextReadingIcon,
+  watch: VideoIcon,
+  todo: CheckDashIcon,
+  submit: InboxInIcon,
+  discuss: ChatBubblesIcon,
 };
 
 // Step Component
@@ -51,7 +53,7 @@ const Step = ({ action, title }) => {
     <Box w="100%">
       <Link href="#" isExternal>
         <Box display="Flex" alignItems="center" backgroundColor="white" p="2" shadow="base">
-          {iconMap[action]}
+          <Icon as={iconMap[action]} />
           <Text ml="2" fontSize="md">
             {title}
           </Text>
@@ -73,14 +75,14 @@ const Toolbar = () => {
 
       <Box color="white" align="center" p="3" borderBottom="white" _hover={{ bg: "gray.500", cursor: "pointer", transition: "all 0.2s" }}>
         <Link ref={designPanelRef} onClick={onOpen}>
-        <EditIcon boxSize={8}/>
+        <Icon as={Edit2Icon}/>
         <Text fontSize="sm">Design</Text>
         </Link>
       </Box>
 
       <Box color="white" align="center" p="3" _hover={{ bg: "gray.500", cursor: "pointer", transition: "all 0.3s" }}>
         <Link>
-        <ChatIcon boxSize={8}/>
+        <Icon as={ChatBubblesIcon}/>
         <Text fontSize="sm">Community</Text>
         </Link>
       </Box>
@@ -98,15 +100,15 @@ const Toolbar = () => {
             <Tabs>
               <TabList>
                 <Tab>
-                 <StarIcon />
+                 
                   Style
                 </Tab>
                 <Tab>
-                  <StarIcon />
+                 
                   Settings
                 </Tab>
                 <Tab>
-                  <StarIcon />
+                 
                   Publish
                 </Tab>
               </TabList>
