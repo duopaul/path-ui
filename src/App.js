@@ -7,29 +7,19 @@ import {
   Link,
   VStack,
   Flex,
-  Icon,
-  Spacer,
-  Stack,
-  Code,
-  Grid,
   Heading,
   Button,
   theme,
-  StackDivider,
-  AlertTitle,
   useDisclosure,
-  Input,
   Drawer,DrawerBody,DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton,
   Tabs, TabList, TabPanels, Tab, TabPanel,
 } from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
 import {
   EditIcon,
   ViewIcon,
   HamburgerIcon,
   ArrowUpIcon,
   ChatIcon,
-  SettingsIcon,
   StarIcon,
 } from '@chakra-ui/icons';
 
