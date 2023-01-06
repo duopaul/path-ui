@@ -13,7 +13,7 @@ import {
   useDisclosure,
   Icon,
   Drawer,DrawerBody,DrawerFooter, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton,
-  Tabs, TabList, TabPanels, Tab, TabPanel,
+  Tabs, TabList, TabPanels, Tab, TabPanel, textDecoration,
 } from '@chakra-ui/react';
 
 import { 
@@ -23,13 +23,14 @@ import {
   InboxInIcon,
   ChatBubblesIcon,
   Edit2Icon,
+  ChatBubblesFillIcon,
 } from '@pathwright/pathicons';
 
 
 // Step Group Component 
 const StepGroup = (props) => (
   <Box backgroundColor="whiteAlpha.700" w="50%" maxWidth="500px;" shadow="md" mt="5" p="3"  borderRadius='lg'>
-      <Text fontSize="lg" fontWeight="bold" align="center">{props.title}</Text>
+      <Heading as="h2" size="lg" align="center">{props.title}</Heading>
       <Text mt="2" mb="2" align="center">{props.description}</Text>
       <VStack direction="row">
         {props.children}
@@ -45,6 +46,8 @@ const iconMap = {
   todo: CheckDashIcon,
   submit: InboxInIcon,
   discuss: ChatBubblesIcon,
+  design: Edit2Icon,
+  community: ChatBubblesFillIcon,
 };
 
 // Step Component
@@ -63,29 +66,32 @@ const Step = ({ action, title }) => {
   );
 };
 
+// Tool Option Component
+const ToolOption = (props) => {
+  
+  return (
+    <Link ref={props.designPanelRef} onClick={props.onOpen}>
+      <Box color="white" align="center" p="2" borderBottom="white" _hover={{ bg: "gray.500", cursor: "pointer", transition: "all 0.2s" }}>
+        <Icon as={iconMap[props.icon]} boxSize="5" />
+        <Text fontSize="2xs">{props.label}</Text>
+     </Box>
+    </Link>
+  )
+
+}
+
 // Toolbar component
 const Toolbar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const designPanelRef = React.useRef()
-  //adding a comment
+  
   return (
     
-    <Box position="fixed" top="5" right="5" bg="gray.800" p="2" zIndex="1">
+    <Box position="fixed" top="5" right="5" bg="gray.800" p="0" zIndex="1" maxWidth={80}>
       
+      <ToolOption designPanelRef={designPanelRef} onOpen={onOpen} icon="design" label="Design" />
+      <ToolOption icon="community" label="Community" />
 
-      <Box color="white" align="center" p="3" borderBottom="white" _hover={{ bg: "gray.500", cursor: "pointer", transition: "all 0.2s" }}>
-        <Link ref={designPanelRef} onClick={onOpen}>
-        <Icon as={Edit2Icon}/>
-        <Text fontSize="sm">Design</Text>
-        </Link>
-      </Box>
-
-      <Box color="white" align="center" p="3" _hover={{ bg: "gray.500", cursor: "pointer", transition: "all 0.3s" }}>
-        <Link>
-        <Icon as={ChatBubblesIcon}/>
-        <Text fontSize="sm">Community</Text>
-        </Link>
-      </Box>
    
       <Drawer isOpen={isOpen} placement='right' size="sm"
         onClose={onClose}
@@ -157,7 +163,7 @@ function App() {
             <StepGroup title="Lesson 2" description="Let's learn some more.">
               <Step action="read" title="Read this" />
               <Step action="watch" title="Watch this" />
-              <Step action="todo" title="Do this" />
+              <Step action="discuss" title="Let's chat" />
             </StepGroup>
 
             <StepGroup title="Lesson 3" description="Let's learn even more.">
